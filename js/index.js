@@ -6,6 +6,7 @@ for(i=0; i<numberOfButtons;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonText=this.innerText;
         makeSound(buttonText);
+        buttonAnimation(buttonText);
     });
 }
 
@@ -13,6 +14,7 @@ for(i=0; i<numberOfButtons;i++){
 
 document.addEventListener("keydown",function(event){
         makeSound(event.key);
+        buttonAnimation(event.key);
 });
 
 // Make sound function which take key name to play music
@@ -52,4 +54,13 @@ function makeSound(key){
             audio1.play();
             break;
     }
+}
+
+// button animation
+
+function buttonAnimation(key){
+    document.querySelector("."+key).classList.add("pressed");
+    setTimeout(function(){
+        document.querySelector("."+key).classList.remove("pressed");
+    },100)
 }
